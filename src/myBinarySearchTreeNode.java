@@ -5,13 +5,17 @@ class myBinarySearchTreeNode{
     
   myBinarySearchTreeNode(int inValue){
     // created a new node with empty child pointers
-
+    myValue = inValue;
   }
   
   myBinarySearchTreeNode(int[] A){
     // creates a new Binary Search Tree rooted at the first value in the array
     /// by inserting elements into the tree in the order they are given in A.
-
+    myValue = A[0];
+    //iteration of array
+    for(int i = 1; i < A.length; i++){
+      insert(A[i]);
+    }
   }
   
   public void insert(int inValue){
@@ -22,7 +26,32 @@ class myBinarySearchTreeNode{
     //    * in the left subtree,
     //    * or in the right subtree.
     // If the value already exists in the tree, no action is taken. 
-    
+
+    //RIGHT
+    if(inValue > myValue){
+      if(right == null){
+        right = new myBinarySearchTreeNode(inValue);
+      }
+      else{
+        right.insert(inValue);
+      }
+    }
+
+    //LEFT
+    else if(inValue < myValue){
+      if(left == null){
+        left = new myBinarySearchTreeNode(inValue);
+      }
+      else{
+        left.insert(inValue);
+      }
+    }
+
+    //if duplicates
+    if(inValue == myValue){
+      System.out.println("There appears to be duplicates.");
+    }
+
   }
   
   public int height(){
