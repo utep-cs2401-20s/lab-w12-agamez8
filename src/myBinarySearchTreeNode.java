@@ -51,13 +51,27 @@ class myBinarySearchTreeNode{
     if(inValue == myValue){
       System.out.println("There appears to be duplicates.");
     }
-
   }
   
   public int height(){
      // This method recursively calculates the height of the entire (sub)tree.
      // This method will take O(n) time
-     return -1;
+    int R = 0;
+    int L = 0;
+
+    //recursion
+    if(right != null){
+      R = right.height() + 1;
+    }
+    if( left != null){
+      L = left.height() + 1;
+    }
+    if(R < L){
+      return L;
+    }
+    else{
+      return R;
+    }
   }
   
   public int depth(int search){
@@ -65,8 +79,34 @@ class myBinarySearchTreeNode{
      // If the given value is not in the tree, this method returns -1. 
      // Note that if the tree is a proper BST, this method should complete in O(log n) time.
      // Additionally, remember that the depth is the number of nodes on the path from a node to the root 
-     // (i.e. the number of the recursie calls).
+     // (i.e. the number of the recursive calls)
+
+    if(search > myValue && right != null){
+      return right.depth(search) + 1;
+    }
+    if(search < myValue && left != null){
+      return  left.depth(search) + 1;
+    }
+    if(search == myValue){
+      return 0;
+    }
     return -1;
+    /**Recursive calls. Checks if values equals to myValue and,
+    if values are less. When it finds it, it returns 0. Returns -1
+     if the value was never found.
+     **/
+  }
+
+  public int size(){
+    int sum = 1; //count set
+    //recursive calls
+    if(right != null){
+      sum += right.size();
+    }
+    if(left != null){
+      sum += left.size();
+    }
+    return sum;
   }
   
   // Utility function included so you can debug your solution. 
@@ -79,4 +119,4 @@ class myBinarySearchTreeNode{
     if(right != null) right.print(prefix + "\u2514 ");
   }
   
-} 
+}
