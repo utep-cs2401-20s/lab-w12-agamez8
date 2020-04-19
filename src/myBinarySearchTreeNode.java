@@ -1,4 +1,4 @@
-class myBinarySearchTreeNode{
+public class myBinarySearchTreeNode{
   int myValue;
   myBinarySearchTreeNode left;
   myBinarySearchTreeNode right;
